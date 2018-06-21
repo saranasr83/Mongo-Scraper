@@ -1,0 +1,13 @@
+.paral {
+    min-height: 600px;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 50% 50%
+}
+.paral1 {
+    background-image: url("../img/background.jpg");
+}
+
+.paral2 {
+    background-image: url("../img/toppic.jpg");
+}
