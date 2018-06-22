@@ -1,0 +1,11 @@
+{{>nav-block saved=true home=false}} 
+
+<br/>
+<br/>
+{{#each articles}}
+{{#if saved}}
+ {{>news-block}} 
+{{/if}}
+{{/each}}
+
+{{>modal-block}}

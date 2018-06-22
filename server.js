@@ -7,6 +7,7 @@ var mongoose = require("mongoose");
 var logger = require("morgan");
 var bodyParser = require("body-parser");
 
+var PORT = process.env.PORT || 3002; 
 //handlebars
 var exphbs = require("express-handlebars");
 
@@ -29,7 +30,7 @@ app.use(express.static("public"));
 mongoose.connect("mongodb://localhost/healthScrapedb");
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/healthScrapedb";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
@@ -41,7 +42,7 @@ var routes = require("./controllers/article_controller.js");
 
 app.use(routes);
 
-var PORT = 3002;    
+   
 // Start the server
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");

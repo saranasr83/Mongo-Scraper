@@ -9,6 +9,7 @@ var cheerio = require("cheerio");
 // // Require all models
 var db = require("../models");
 
+// render home page template 
 router.get("/", function (req, res) {
     db.Article.find().then(function (articles) {
         res.render("index", { articles: articles });
@@ -16,6 +17,15 @@ router.get("/", function (req, res) {
 
 })
 
+// render saved template
+router.get("/saved", function (req, res) {
+    db.Article.find().then(function (articles) {
+        res.render("saved", { articles: articles });
+    })
+
+})
+
+// scrape for news articles
 router.get("/scraped", function (req, res) {
 
     axios.get("https://www.healthline.com/").then(function (response) {
@@ -26,7 +36,7 @@ router.get("/scraped", function (req, res) {
             var result = {}
             // result.title = $(this).children(".css-1ez643w").text();
             // result.link = $(this).children(".css-1ez643w").attr("href");
-            var link = $(element).find(".css-1ez643w").attr("href");
+            var link = "https://www.healthline.com"+ $(element).find(".css-1ez643w").attr("href");
             var title = $(element).find(".css-1ez643w").text();
             result = {
                 link: link,
@@ -66,13 +76,26 @@ router.get("/articles", function (req, res) {
 })
 
 //Saving the Favorites Articles
-// router.post("/savedArticles/:id", function(req, res){
-// 	console.log("test1 if the function is working")
-
-// });
+router.put("/update/article/:id", function(req, res){
+    // find one and update by id
+    // updating saved to true / false
+    // send back json to front end
+    console.log(req.body);
+    console.log(req.params.id)
+    db.Article.findOneAndUpdate({_id: req.params.id},req.body, function(err, data){
+        if(err){
+            console.log(err);  
+            res.json(false); 
+        }
+        else {
+            console.log(data);
+            res.json(true)
+        }
+    });
+});
 
 // Route for grabbing a specific Article by id, populate it with it's note
-router.get("/articles/:id", function (req, res) {
+router.get("/note/article/:id", function (req, res) {
     // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
     db.Article.findOne({ _id: req.params.id })
         // ..and populate all of the notes associated with it
@@ -86,8 +109,9 @@ router.get("/articles/:id", function (req, res) {
 });
 
 //add note to each article
-router.post("/articles/:id", function (req, res) {
-    console.log("test2 if the function is working")
+router.post("/note/article/:id", function (req, res) {
+    console.log("test2 if the function is working");
+   
     db.Note.create(req.body).then(function (dbNote) {
         return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
     })

@@ -1,10 +1,13 @@
 <div class="p-5">
     <div class="card">
-        <div class="card-body">
-            <h5 id="article-title" class="card-title">{{this.title}}</h5>
-            <p id="article-link" class="card-text">{{this.link}}</p>
-            <a id="save-the-article" href="/savesarticles" class="btn btn-primary">Save Article</a>
-            <a id="add-note" href="#" class="btn btn-primary">Add Notes</a>
+        <div class="card-body" data-id={{this.id}}>
+            <h5 class="card-title article-title">{{this.title}}</h5>
+            <a class="card-link" href={{this.link}} target="_blank"><strong>{{this.link}}</strong></a>
+            
+            <button class="btn btn-primary save-the-article" data-saved={{this.saved}}>{{#if this.saved}}unsave{{else}}Save Article{{/if}}</button>
+            {{#if this.saved}}
+                <button class="btn btn-primary add-note" >Add Notes</button>
+            {{/if}}
         </div>
     </div>
 </div>

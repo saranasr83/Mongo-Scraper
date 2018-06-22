@@ -11,3 +11,7 @@
 .paral2 {
     background-image: url("../img/toppic.jpg");
 }
+.card-link {
+    display: block;
+    margin-bottom: 10px;
+}
