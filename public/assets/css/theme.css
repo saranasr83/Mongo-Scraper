@@ -129,13 +129,13 @@ body {
   }
   
   .btn-primary {
-    background-color: #ee0979;
-    border-color: #ee0979;
+    background-color: #44aef5;
+    border-color: #44aef5;
   }
   
   .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-    background-color: #bd0760 !important;
-    border-color: #bd0760 !important;
+    background-color: rgb(2, 2, 148) !important;
+    border-color: rgb(2, 2, 148) !important;
   }
   
   .btn-primary:focus {

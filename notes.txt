@@ -1,0 +1,5 @@
+# Saving articles to db
+1. uncomment mongo code, check db to see if articles are stored
+2. send them back as json to your front end (think about storing them in an array to do this)
+3. render/handle them on your front end
+bonus: handle undefined data

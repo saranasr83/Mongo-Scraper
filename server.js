@@ -32,7 +32,7 @@ var routes = require("./controllers/article_controller.js");
 
 app.use(routes);
 
-var PORT = 3000;    
+var PORT = 3002;    
 // Start the server
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
